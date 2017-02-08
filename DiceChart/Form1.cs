@@ -1,18 +1,24 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace DiceChart
 {
 
-    public partial class Form1 : Form
+    public partial class DiceChartMainWindow : Form
     {
         const int ITERATIONS = 10000;
 
-        public Form1()
+        public DiceChartMainWindow()
         {
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Generates the histogram data using the selected dice
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             Random randomGenerator = new Random();
@@ -54,7 +60,36 @@ namespace DiceChart
                 diceHistogram.Series[0].Points.AddXY(i, values[i]);
             }
 
+            diceHistogram.ChartAreas[0].AxisX.Title = "Dice: " + number + "d" + dice;
+            diceHistogram.ChartAreas[0].AxisY.Title = "Rolls in " + ITERATIONS;
             diceHistogram.Update();
+        }
+
+        /// <summary>
+        /// Saves the charted histogram to a JPG file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void saveToImageButton_Click(object sender, EventArgs e)
+        {
+            Stream imageStream;
+            SaveFileDialog saveDialog = new SaveFileDialog();
+
+            saveDialog.Filter = "jpg files (*.jpg)|*.jpg|All files (*.*)|*.*";
+            saveDialog.FilterIndex = 1;
+            saveDialog.RestoreDirectory = true;
+
+            if(saveDialog.ShowDialog() == DialogResult.OK)
+            {
+                imageStream = saveDialog.OpenFile();
+                if( imageStream != null )
+                {
+                    using (imageStream)
+                    {
+                        diceHistogram.SaveImage(imageStream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    }
+                }
+            }
         }
     }
 }
