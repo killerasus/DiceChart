@@ -130,7 +130,7 @@
             // 
             this.saveToImageButton.AccessibleDescription = "Save to image";
             this.saveToImageButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.saveToImageButton.BackgroundImage = global::DiceChart.Properties.Resources.camera_slr_3x;
+            this.saveToImageButton.BackgroundImage = global::DiceChart.Properties.Resources.camera;
             this.saveToImageButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.saveToImageButton.Location = new System.Drawing.Point(321, 33);
             this.saveToImageButton.Name = "saveToImageButton";

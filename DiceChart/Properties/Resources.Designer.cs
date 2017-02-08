@@ -63,9 +63,9 @@ namespace DiceChart.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap camera_slr_3x {
+        internal static System.Drawing.Bitmap camera {
             get {
-                object obj = ResourceManager.GetObject("camera-slr-3x", resourceCulture);
+                object obj = ResourceManager.GetObject("camera", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
